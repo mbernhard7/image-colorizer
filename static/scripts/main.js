@@ -20,31 +20,36 @@ function readURL(input) {
 }
 
 function colorizeImage() {
-  const input = document.querySelector('file-upload-input') ;
-  if (input.files && input.files[0]) {
-    const formData = new FormData()
-    formData.append('imageFile', input.files[0])
-    const options = {
-      method: 'POST',
-      body: formData,
-      // If you add this, upload won't work
-      // headers: {
-      //   'Content-Type': 'multipart/form-data',
-      // }
-    };
-    fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
-    .then(res => {
-      res.text()
-      .then(data => {
-      console.log(data)
-    })})
-    .catch(error => {
-      console.error(error)
-    })
+  const img = document.querySelector('file-upload-imag') ;
 
-  } else {
-    removeUpload();
-  }
+  fetch(img.src)
+  .then(res => res.blob())
+  .then(blob => {
+    const file = new File([blob], 'dot.png', blob)
+    if (file) {
+      const formData = new FormData()
+      formData.append('imageFile', file)
+      const options = {
+        method: 'POST',
+        body: formData,
+        // If you add this, upload won't work
+        // headers: {
+        //   'Content-Type': 'multipart/form-data',
+        // }
+      };
+      fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
+      .then(res => {
+        res.text()
+        .then(data => {
+        console.log(data)
+      })})
+      .catch(error => {
+        console.error(error)
+      })
+
+    } else {
+      removeUpload();
+    }})
 }
 
 function removeUpload() {
