@@ -10,11 +10,11 @@ def main():
 @app.route('/colorize', methods=['POST'])
 def colorize():
 	try:
-        image = request.json['imageFile']
+		image = request.json['imageFile']
 
-        return jsonify({"imageFile": image}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
+		return jsonify({"imageFile": image}), 200
+	except Exception as e:
+		return f"An Error Occured: {e}"
 
 if __name__=="__main__":
 	app.run()
