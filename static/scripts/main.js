@@ -35,7 +35,7 @@ function colorizeImage() {
     };
     fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
     .then(res => {
-      res.json()
+      res.text()
       .then(data => {
       console.log(data)
     })})
