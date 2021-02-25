@@ -20,11 +20,10 @@ function readURL(input) {
 }
 
 function colorizeImage() {
-  
-  if ($('.file-upload-image') && $('.file-upload-image').attr('src')!=="#"){    
-    var image = $('.file-upload-image').attr('src')
+  const input = document.querySelector('file-upload-input') ;
+  if (input.files && input.files[0]) {
     const formData = new FormData()
-    formData.append('imageFile', "test")
+    formData.append('imageFile', input.files[0])
     const options = {
       method: 'POST',
       body: formData,
@@ -43,6 +42,8 @@ function colorizeImage() {
       console.error(error)
     })
 
+  } else {
+    removeUpload();
   }
 }
 

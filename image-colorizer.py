@@ -13,6 +13,6 @@ def colorize():
 	try:
 		file = request.files['imageFile']
 		img = Image.open(file.stream)
-		return jsonify({'msg': 'success', 'size': [img.width, img.height]})
+		return jsonify({'msg': 'success', 'size': [img.width, img.height]}),200
 	except Exception as e:
-		return f"An Error Occured: {e}"
+		return f"An Error Occured: {e}",400
