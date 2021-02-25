@@ -21,8 +21,8 @@ function readURL(input) {
 
 function colorizeImage() {
   
-  if ($('.file-upload-image') && $('.file-upload-image').attr('src')!==""){    
-    var image = $('.file-upload-image').getAttribute('src')
+  if ($('.file-upload-image') && $('.file-upload-image').attr('src')!=="#"){    
+    var image = $('.file-upload-image').attr('src')
     const formData = new FormData()
     formData.append('imageFile', image)
     fetch('/colorize', {
