@@ -20,7 +20,7 @@ function readURL(input) {
 }
 
 function colorizeImage() {
-  const img = document.querySelector('file-upload-imag') ;
+  const img = document.querySelector('file-upload-image') ;
 
   fetch(img.src)
   .then(res => res.blob())
