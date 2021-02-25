@@ -24,18 +24,17 @@ function colorizeImage() {
   if ($('.file-upload-image') && $('.file-upload-image').attr('src')!=="#"){    
     var image = $('.file-upload-image').attr('src')
     const formData = new FormData()
-    formData.append('imageFile', image)
-    console.log(image)
-    fetch('/colorize', {
+    formData.append('imageFile', "test")
+    fetch('https://cs121-image-colorizer.herokuapp.com/colorize', {
       method: 'POST',
-      body: formData
+      body: {"imageFile" : "test"}
     })
     .then(res => {
       console.log(res)
-    })
+    });
     .catch(error => {
       console.error(error)
-    })
+    });
 
   }
 }
