@@ -25,11 +25,17 @@ function colorizeImage() {
     var image = $('.file-upload-image').attr('src')
     const formData = new FormData()
     formData.append('imageFile', "test")
-    fetch('https://cs121-image-colorizer.herokuapp.com/colorize', {
+    const options = {
       method: 'POST',
-      body: {"imageFile" : "test"}
-    })
+      body: formData,
+      // If you add this, upload won't work
+      // headers: {
+      //   'Content-Type': 'multipart/form-data',
+      // }
+    };
+    fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
     .then(res => {
+      console.log(res)
       res.text()
     })
     .then(data => {
