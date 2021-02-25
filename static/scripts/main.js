@@ -25,6 +25,7 @@ function colorizeImage() {
     var image = $('.file-upload-image').attr('src')
     const formData = new FormData()
     formData.append('imageFile', image)
+    console.log(formData)
     fetch('/colorize', {
       method: 'POST',
       body: formData
