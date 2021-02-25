@@ -19,6 +19,26 @@ function readURL(input) {
   }
 }
 
+function colorizeImage(file) {
+  if (file) {
+    const formData = new FormData()
+    formData.append('imageFile', file)
+
+  fetch('/colorize', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.path)
+  })
+  .catch(error => {
+    console.error(error)
+  })
+
+  }
+}
+
 function removeUpload() {
   $('.file-upload-input').replaceWith($('.file-upload-input').clone());
   $('.file-upload-content').hide();
