@@ -20,8 +20,10 @@ function readURL(input) {
 }
 
 function colorizeImage(input) {
-  if (input.files && input.files[0]) {    const formData = new FormData()
-    formData.append('imageFile', input.files[0])
+  var image = $('.file-upload-image').getAttribute('src')
+  if (image !==""){    
+    const formData = new FormData()
+    formData.append('imageFile', image)
     fetch('/colorize', {
       method: 'POST',
       body: formData
