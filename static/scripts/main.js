@@ -30,7 +30,10 @@ function colorizeImage() {
       body: {"imageFile" : "test"}
     })
     .then(res => {
-      console.log(res)
+      res.json()
+    })
+    .then(data => {
+      console.log(data)
     })
     .catch(error => {
       console.error(error)
