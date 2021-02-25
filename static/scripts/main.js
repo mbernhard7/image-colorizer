@@ -19,22 +19,20 @@ function readURL(input) {
   }
 }
 
-function colorizeImage(file) {
-  if (file) {
-    const formData = new FormData()
-    formData.append('imageFile', file)
-
-  fetch('/colorize', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.path)
-  })
-  .catch(error => {
-    console.error(error)
-  })
+function colorizeImage(input) {
+  if (input.files && input.files[0]) {    const formData = new FormData()
+    formData.append('imageFile', input.files[0])
+    fetch('/colorize', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.path)
+    })
+    .catch(error => {
+      console.error(error)
+    })
 
   }
 }
