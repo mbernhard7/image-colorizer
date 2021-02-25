@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify
-import Image
+from PIL import Image
 
 app = Flask(__name__)
 
