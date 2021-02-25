@@ -45,8 +45,3 @@ function removeUpload() {
   $('.file-upload-content').hide();
   $('.image-upload-wrap').show();
 }
-
-git add .                       
-git commit -m "testing image upload"
-git push -u origin main             
-git push heroku main
