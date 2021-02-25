@@ -35,12 +35,10 @@ function colorizeImage() {
     };
     fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
     .then(res => {
-      console.log(res)
-      res.text()
-    })
-    .then(data => {
+      res.json()
+      .then(data => {
       console.log(data)
-    })
+    })})
     .catch(error => {
       console.error(error)
     })
