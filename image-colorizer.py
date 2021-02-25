@@ -10,7 +10,8 @@ def index():
 @app.route('/colorize', methods=['POST'])
 def colorize():
 	try:
-		image = request.files['imageFile']
-		return {'imageFile',image}
+		file = request.files['imageFile']
+		img = Image.open(file.stream)
+		return jsonify({'msg': 'success', 'size': [img.width, img.height]})
 	except Exception as e:
 		return f"An Error Occured: {e}"
