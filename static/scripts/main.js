@@ -21,7 +21,6 @@ function readURL(input) {
 
 function colorizeImage() {
   const img = $('.file-upload-image');
-  console.log(img.attr('src'))
   fetch(img.attr('src'))
   .then(res => res.blob())
   .then(blob => {
@@ -39,7 +38,7 @@ function colorizeImage() {
         .then(data => {
           $('.file-return-content').show();
           $('.file-return-image').attr('src', data['imageFile']);
-        console.log(data)
+        console.log(data['imageFile'])
       })})
       .catch(error => {
         console.error(error)
