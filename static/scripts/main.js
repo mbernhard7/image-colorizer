@@ -21,6 +21,8 @@ function readURL(input) {
 
 function colorizeImage() {
   const img = document.querySelector('file-upload-image') ;
+  console.log(img.attr('src'))
+  console.log(img.src)
 
   fetch(img.src)
   .then(res => res.blob())
