@@ -16,8 +16,8 @@ def colorize():
 		file = request.files['imageFile']
 		img = Image.open(file.stream)
 		img_byte_arr = io.BytesIO()
-    	img.save(img_byte_arr, format='PNG')
-    	my_encoded_img = base64.encodebytes(img_byte_arr.getvalue()).decode('ascii')
+		img.save(img_byte_arr, format='PNG')
+		my_encoded_img = base64.encodebytes(img_byte_arr.getvalue()).decode('ascii')
 		return jsonify({'msg': 'success', 'imageFile': my_encoded_img}),200
 	except Exception as e:
 		return f"An Error Occured: {e}",400
