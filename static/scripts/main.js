@@ -22,9 +22,7 @@ function readURL(input) {
 function colorizeImage() {
   const img = $('.file-upload-image');
   console.log(img.attr('src'))
-  console.log(img.src)
-
-  fetch(img.src)
+  fetch(img.attr('src'))
   .then(res => res.blob())
   .then(blob => {
     const file = new File([blob], 'dot.png', blob)
