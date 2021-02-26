@@ -35,10 +35,10 @@ function colorizeImage() {
       };
       fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
       .then(res => {
-        res.text()
+        res.json()
         .then(data => {
           $('.file-return-content').show();
-          $('.file-return-image').attr('src', e.target.result);
+          $('.file-return-image').attr('src', data['imageFile']);
         console.log(data)
       })})
       .catch(error => {
