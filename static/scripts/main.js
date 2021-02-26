@@ -32,15 +32,13 @@ function colorizeImage() {
       const options = {
         method: 'POST',
         body: formData,
-        // If you add this, upload won't work
-        // headers: {
-        //   'Content-Type': 'multipart/form-data',
-        // }
       };
       fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
       .then(res => {
         res.text()
         .then(data => {
+          $('.file-return-content').show();
+          $('.file-return-image').attr('src', e.target.result);
         console.log(data)
       })})
       .catch(error => {
@@ -55,5 +53,6 @@ function colorizeImage() {
 function removeUpload() {
   $('.file-upload-input').replaceWith($('.file-upload-input').clone());
   $('.file-upload-content').hide();
+  $('.file-return-content').hide();
   $('.image-upload-wrap').show();
 }
