@@ -3,6 +3,31 @@ body {
   background-color: #eeeeee;
 }
 
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+.tablink:hover {
+  background-color: #777;
+}
+
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Colorizer {background-color: red;}
+#About {background-color: orange;}
+
 .file-upload {
   width: 600px;
   margin: 0 auto;
@@ -37,6 +62,11 @@ body {
 }
 
 .file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-return-content {
   display: none;
   text-align: center;
 }
