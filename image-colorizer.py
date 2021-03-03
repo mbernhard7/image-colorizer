@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_file
 from PIL import Image
-import io
-import base64
+from io import BytesIO
 
 app = Flask(__name__)
 
