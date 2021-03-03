@@ -11,8 +11,10 @@
 <body>
 
 <h1 class="title">Image Colorizer</h1>
-<button class="tablink" onclick="openPage('Colorizer', this, 'red')" id="defaultOpen">Colorizer</button>
-<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+<div class="tabbar">
+	<button class="tablink" onclick="openPage('Colorizer', this)" style="background:#1FB264">Colorizer</button>
+	<button class="tablink" onclick="openPage('About', this)">About</button>
+</div>
 
 <div id="Colorizer" class="tabcontent">
 	<div class="file-upload">
@@ -22,10 +24,10 @@
 	  </div>
 	  <div class="file-upload-content">
 	    <img class="file-upload-image" src="#" alt="your image" />
-	    <div class="image-title-wrap">
-	      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-	      <button type="button" onclick="colorizeImage()" class="colorize-image">Colorize <span class="image-title"> Image</span></button>
-	    </div>
+	    <div>
+	    	<button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+	     	<button type="button" onclick="colorizeImage()" class="colorize-image">Colorize <span class="image-title"> Image</span></button>
+	 	</div>
 	  </div>
 	  <div class="file-return-content">
 	    <img class="file-return-image" src="#" alt="your image" />
@@ -33,10 +35,10 @@
 	</div>
 </div>
 
-<div id="About" class="tabcontent">
-	<h2 style="color:#1FB264; font-size:200%; text-align:center;">About</h2>
+<div id="About" class="tabcontent" style="display:none;">
 	<p>Example text about the project here</p>
 </div>
+
 
 </body>
 </html>
