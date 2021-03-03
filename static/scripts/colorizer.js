@@ -34,7 +34,7 @@ function colorizeImage() {
       };
       fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
       .then(res => {
-        const status = response.headers.get("status");
+        const status = res.headers.get("status");
         if (status==200) {
             $('.file-return-image').attr('src', 'data:image/jpg;base64,'+data);
             $('.file-return-content').show();
