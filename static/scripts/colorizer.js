@@ -34,12 +34,15 @@ function colorizeImage() {
       };
       fetch('https://cs121-image-colorizer.herokuapp.com/colorize', options)
       .then(res => {
-        res.json()
-        .then(data => {
-          $('.file-return-content').show();
-          $('.file-return-image').attr('src', data['imageFile']);
-        console.log(data['imageFile'])
-      })})
+        const status = response.headers.get("status");
+        if (status==200) {
+            $('.file-return-image').attr('src', 'data:image/jpg;base64,'+data);
+            $('.file-return-content').show();
+            console.log(res);
+        } else {
+          console.error(status+' '+res.text())
+        }
+      })
       .catch(error => {
         console.error(error)
       })
