@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_file
 from PIL import Image
+import PIL.ImageOps   
 from io import BytesIO
 
 app = Flask(__name__)
@@ -14,10 +15,10 @@ def colorize():
 	try:
 		file = request.files['imageFile']
 		img = Image.open(file.stream)
+		img=PIL.ImageOps.invert(img)
 		img_io = BytesIO()
 		img.save(img_io, 'JPEG', quality=70)
 		img_io.seek(0)
 		return send_file(img_io, mimetype='image/jpeg'), 200
-
 	except Exception as e:
 		return f"An Error Occured: {e}",400

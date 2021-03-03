@@ -2,22 +2,19 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/css/header.css">
-<link rel="stylesheet" href="/static/css/colorizer.css">
 <link rel="stylesheet" href="/static/css/style.css">
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="/static/scripts/colorizer.js"></script>
-<script src="/static/scripts/tabs.js"></script>
+<script src="/static/scripts/main.js"></script>
 </head>
 <body>
 
 <h1 class="title">Image Colorizer</h1>
 <div class="tabbar">
-	<button class="tablink" onclick="openPage('Colorizer', this)" style="background:#1FB264">Colorizer</button>
+	<button class="tablink current" onclick="openPage('Colorizer', this)">Colorizer</button>
 	<button class="tablink" onclick="openPage('About', this)">About</button>
 </div>
 
-<div id="Colorizer" class="tabcontent">
+<div id="Colorizer" class="tabcontent current">
 	<div class="file-upload">
 	  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 	  <div class="image-upload-wrap">
@@ -32,14 +29,17 @@
 	  </div>
 	  <div class="file-return-content">
 	    <img class="file-return-image" src="#" alt="your image" />
+	    <div>
+   			<button class="download" type="button" onClick="downloadImage()"> Download <span class="new-image-title"></span></button>
+   			<a class="download-link" href="" download="" target="blank_" style="display:none;"></a>
+		</div>
 	  </div>
 	</div>
 </div>
 
-<div id="About" class="tabcontent" style="display:none;">
-	<p class="aboutText">This website colorizes black and white images using a neural network backend. Created for CSCI121 at Harvey Mudd. Currently in development.</p>
+<div id="About" class="tabcontent">
+	<p class="aboutText">This website colorizes black and white images using a neural network backend. Created for CSCI121 at Harvey Mudd. Currently in development.<br>Created by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
 </div>
-
 
 </body>
 </html>
