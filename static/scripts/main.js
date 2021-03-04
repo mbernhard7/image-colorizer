@@ -3,7 +3,6 @@ var newImageName;
 var fileExtension;
 
 function readURL(input) {
-  $('.file-return-content').hide();
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     var file = input.files[0];
@@ -11,6 +10,7 @@ function readURL(input) {
     imageName=file.name.toString();
     fileExtension=imageName.split('.').slice(-1)[0]
     newImageName = imageName.replace('.'+fileExtension,'-colorized.'+fileExtension);
+    fileExtension=fileExtension.replace('jpg','jpeg').replace('JPG','JPEG')
     if (fileSize>5000000){
       $('.error-message').html('File larger than 5 MB maximum')
       removeUpload();
@@ -32,10 +32,13 @@ function readURL(input) {
 }
 
 function colorizeImage() {
+  $('.colorize-image').attr('disabled', 'disabled');
+  $('.remove-image').attr('disabled', 'disabled');
+  $('.file-return-image').show()
   fetch($('.file-upload-image').attr('src'))
   .then(res => res.blob())
   .then(blob => {
-    const file = new File([blob], 'image.'+fileExtension, blob)
+    const file = new File([blob], 'image.'+fileExtension.toLowerCase(), blob)
     if (file) {
       const formData = new FormData()
       formData.append('imageFile', file)
@@ -51,14 +54,19 @@ function colorizeImage() {
             const imgURL = URL.createObjectURL(blob);
             $('.file-return-image').attr('src', imgURL);
             $('.download-link').attr('href', imgURL);
-            $('.file-return-content').show();
+            $('.download').show();
+            $('.remove-image').removeAttr("disabled");
           });
         } else {
           console.error(status+' '+res.text())
+          $('.error-message').html('Error: '+status)
+          removeUpload();
         }
       })
       .catch(error => {
       console.error(error)
+      $('.error-message').html(error)
+      removeUpload();
       })
     } else {
       removeUpload();
@@ -68,16 +76,19 @@ function colorizeImage() {
 function removeUpload() {
   $('.file-upload-input').replaceWith($('.file-upload-input').clone());
   $('.file-upload-content').hide();
-  $('.file-return-content').hide();
+  $('.file-return-image').hide();
+  $('.file-return-image').attr('src', '/static/images/loading.gif');
+  $('.download').hide();
   $('.image-upload-wrap').show();
   $('.file-upload-btn').show();
+  $('.colorize-image').removeAttr("disabled");
+  $('.remove-image').removeAttr("disabled");
   imageName="";
   newImageName="";
   fileExtension="";
 }
 
 function downloadImage() {
-  $('.download-link').attr("style","");
   document.getElementsByClassName('download-link')[0].click();
 }
 

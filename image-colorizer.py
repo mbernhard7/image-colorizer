@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, jsonify, send_file
 from PIL import Image
 import PIL.ImageOps   
 from io import BytesIO
+import time
 
 app = Flask(__name__)
 
@@ -13,8 +14,9 @@ def index():
 @app.route('/colorize', methods=['POST'])
 def colorize():
 	try:
+		time.sleep(5)
 		file = request.files['imageFile']
-		extension=file.filename.split('.')[-1].replace('jpg','jpeg')
+		extension=file.filename.split('.')[-1]
 		img = Image.open(file.stream).convert('RGB')
 		img=PIL.ImageOps.invert(img)
 		img_io = BytesIO()

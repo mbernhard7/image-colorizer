@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/css/style.css">
-<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="/static/scripts/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="/static/scripts/main.js"></script>
 </head>
+
 <body>
-
-<h1 class="title">Image Colorizer</h1>
-<div class="tabbar">
-	<button class="tablink current" onclick="openPage('Colorizer', this)">Colorizer</button>
-	<button class="tablink" onclick="openPage('About', this)">About</button>
-</div>
-
-<div id="Colorizer" class="tabcontent current">
-	<div class="file-upload">
-	  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload</button>
-	  <div style="text-align: center;">
-	  	<span class="error-message"></span>
-	  </div>
-	  <div class="image-upload-wrap">
-	    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
-	  </div>
-	  <div class="file-upload-content">
-	    <img class="file-upload-image" src="#" alt="your image" />
-	    <div>
-	    	<button type="button" onclick="removeUpload()" class="remove-image">Remove</button>
-	     	<button type="button" onclick="colorizeImage()" class="colorize-image">Colorize</button>
-	 	</div>
-	  </div>
-	  <div class="file-return-content">
-	    <img class="file-return-image" src="#" alt="your image" />
-	    <div>
-   			<button class="download" type="button" onClick="downloadImage()"> Download</button>
-   			<a class="download-link" href="" download="" target="blank_" style="display:none;"></a>
-		</div>
-	  </div>
+	<div class="header">
+	    <h1 class="title">Image Colorizer</h1>
+	    <div class="tabbar">
+	        <button class="tablink current" onclick="openPage('Colorizer', this)">Colorizer</button>
+	        <button class="tablink" onclick="openPage('About', this)">About</button>
+	    </div>
 	</div>
-</div>
-
-<div id="About" class="tabcontent">
-	<p class="aboutText">This website colorizes black and white images using a neural network backend. Created for CSCI121 at Harvey Mudd. Currently in development.<br>Created by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
-</div>
-
+    <div id="Colorizer" class="tabcontent current">
+    	<div style="text-align: center;">
+        	<button class="file-upload-btn btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload</button>
+        </div>
+        <div style="text-align: center;">
+        	<span class="error-message"></span>
+    	</div>
+        <div class="image-upload-wrap">
+            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
+        </div>
+        <div class="file-upload-content">
+            <img class="file-upload-image" src="#" alt="Uploaded Image" />
+            <div>
+                <button type="button" onclick="removeUpload()" class="remove-image btn">Remove</button>
+                <button type="button" onclick="colorizeImage()" class="colorize-image btn">Colorize</button>
+            </div>
+        </div>
+        <div class="file-return-content">
+            <img class="file-return-image" src="/static/images/loading.gif" alt="Loading..." />
+            <div>
+                <button class="download btn" type="button" onClick="downloadImage()">Download</button>
+                <a class="download-link" href="" download="" target="blank_"></a>
+            </div>
+        </div>
+    </div>
+    <div id="About" class="tabcontent">
+        <p class="aboutText">This website colorizes black and white images using a neural network backend. Created for CSCI121 at Harvey Mudd. Currently in development.<br>Created by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
+    </div>
 </body>
+
 </html>
