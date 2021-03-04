@@ -16,11 +16,11 @@ function readURL(input) {
       removeUpload();
     } else {
       reader.onload = function(e) {
-        $('.image-upload-wrap').hide();
+        $('.image-upload-wrap').css("display", "none");
         $('.error-message').html('')
         $('.file-upload-image').attr('src', e.target.result);
-        $('.file-upload-content').show();
-        $('.file-upload-btn').hide();
+        $('.file-upload-content').css("display", "block");
+        $('.file-upload-btn').css("display", "none");
         $('.download-link').attr('download',newImageName);
       };
       reader.readAsDataURL(input.files[0]);
@@ -54,7 +54,7 @@ function colorizeImage() {
             const imgURL = URL.createObjectURL(blob);
             $('.file-return-image').attr('src', imgURL);
             $('.download-link').attr('href', imgURL);
-            $('.download').show();
+            $('.download').css("display", "block");
             $('.remove-image').removeAttr("disabled");
           });
         } else {
@@ -75,12 +75,12 @@ function colorizeImage() {
 
 function removeUpload() {
   $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-  $('.file-upload-content').hide();
-  $('.file-return-image').hide();
+  $('.file-upload-content').css("display", "none");
+  $('.file-return-image').css("display", "none");
   $('.file-return-image').attr('src', '/static/images/loading.gif');
-  $('.download').hide();
-  $('.image-upload-wrap').show();
-  $('.file-upload-btn').show();
+  $('.download').css("display", "none");
+  $('.image-upload-wrap').css("display", "block");
+  $('.file-upload-btn').css("display", "block");
   $('.colorize-image').removeAttr("disabled");
   $('.remove-image').removeAttr("disabled");
   imageName="";
