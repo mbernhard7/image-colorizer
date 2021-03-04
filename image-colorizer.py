@@ -14,11 +14,12 @@ def index():
 def colorize():
 	try:
 		file = request.files['imageFile']
-		img = Image.open(file.stream)
+		extension=file.filename.split('.')[-1].replace('jpg','jpeg')
+		img = Image.open(file.stream).convert('RGB')
 		img=PIL.ImageOps.invert(img)
 		img_io = BytesIO()
-		img.save(img_io, 'JPEG', quality=70)
+		img.save(img_io, extension.upper(), quality=100)
 		img_io.seek(0)
-		return send_file(img_io, mimetype='image/jpeg'), 200
+		return send_file(img_io, mimetype='image/'+extension.lower()), 200
 	except Exception as e:
 		return f"An Error Occured: {e}",400

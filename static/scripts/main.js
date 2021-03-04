@@ -1,24 +1,32 @@
+var imageName;
+var newImageName;
+var fileExtension;
+
 function readURL(input) {
+  $('.file-return-content').hide();
   if (input.files && input.files[0]) {
-
     var reader = new FileReader();
-
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
-
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
-
-      $('.image-title').html(input.files[0].name);
-      var newName=input.files[0].name.split(".")[0];
-      newName=newName+'-colorized.jpg';
-      $('.new-image-title').html(newName);
-      $('.download-link').attr('download',newName);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
+    var file = input.files[0];
+    var fileSize = file.size.toString();
+    imageName=file.name.toString();
+    fileExtension=imageName.split('.').slice(-1)[0]
+    newImageName = imageName.replace('.'+fileExtension,'-colorized.'+fileExtension);
+    if (fileSize>5000000){
+      $('.error-message').html('File larger than 5 MB maximum')
+      removeUpload();
+    } else {
+      reader.onload = function(e) {
+        $('.image-upload-wrap').hide();
+        $('.error-message').html('')
+        $('.file-upload-image').attr('src', e.target.result);
+        $('.file-upload-content').show();
+        $('.file-upload-btn').hide();
+        $('.download-link').attr('download',newImageName);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   } else {
+    $('.error-message').html('No image file found')
     removeUpload();
   }
 }
@@ -27,7 +35,7 @@ function colorizeImage() {
   fetch($('.file-upload-image').attr('src'))
   .then(res => res.blob())
   .then(blob => {
-    const file = new File([blob], 'image.jpg', blob)
+    const file = new File([blob], 'image.'+fileExtension, blob)
     if (file) {
       const formData = new FormData()
       formData.append('imageFile', file)
@@ -62,6 +70,10 @@ function removeUpload() {
   $('.file-upload-content').hide();
   $('.file-return-content').hide();
   $('.image-upload-wrap').show();
+  $('.file-upload-btn').show();
+  imageName="";
+  newImageName="";
+  fileExtension="";
 }
 
 function downloadImage() {
