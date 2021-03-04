@@ -24,8 +24,8 @@ def colorize():
 		img_io.seek(0)
 		t1 = time.time()
 		total = t1-t0
-		if t1-t0<3:
-			time.sleep(3-(t1-t0))
+		if t1-t0<1:
+			time.sleep(1-(t1-t0))
 		return send_file(img_io, mimetype='image/'+extension.lower()), 200
 	except Exception as e:
 		return f"An Error Occured: {e}",400
