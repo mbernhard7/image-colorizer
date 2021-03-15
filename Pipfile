@@ -9,7 +9,12 @@ flask = "*"
 gunicorn = "*"
 pillow = "*"
 python-dotenv = "*"
-
+pickle-mixin = "*"
+fastai = "==2.1.5"
+fastcore = "==1.3.6"
+fastprogress = "==1.0.0"
+torchvision = "==0.8.1"
+torch = "==1.7.0"
 [dev-packages]
 
 [requires]

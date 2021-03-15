@@ -49,13 +49,16 @@ function colorizeImage() {
       fetch('/colorize', options)
       .then(res => {
         if (res.status==200) {
-          res.blob()
-          .then(blob => {
-            const imgURL = URL.createObjectURL(blob);
-            $('.file-return-image').attr('src', imgURL);
-            $('.download-link').attr('href', imgURL);
-            $('.download').css("display", "block");
-            $('.remove-image').removeAttr("disabled");
+          res.json().then(data => {
+            fetch(data['image']).then(response => response.blob())
+            .then(blob => {
+              const imgURL = URL.createObjectURL(blob);
+              $('.file-return-image').attr('src', imgURL);
+              $('.result-class').html(data['prediction']+' , '+data['probability']+'% sure');
+              $('.download-link').attr('href', imgURL);
+              $('.download').css("display", "block");
+              $('.remove-image').removeAttr("disabled");
+            });
           });
         } else {
           console.error(status+' '+res.text())
@@ -77,6 +80,7 @@ function removeUpload() {
   $('.file-upload-input').replaceWith($('.file-upload-input').clone());
   $('.file-upload-content').css("display", "none");
   $('.file-return-image').css("display", "none");
+  $('.result-class').html("");
   $('.file-return-image').attr('src', '/static/images/loading.gif');
   $('.download').css("display", "none");
   $('.image-upload-wrap').css("display", "block");
