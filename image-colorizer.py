@@ -5,15 +5,13 @@ import pickle
 import io
 from fastai.vision.all import *
 import fastai
-import torch
-import torchvision.transforms as T
 from io import BytesIO
 import base64
 import urllib.request
-import torch
+
 app = Flask(__name__)
 #set to run on CPU
-torch.device("cpu")
+#torch.device("cpu")
 #fetch model from Google Cloud Storage
 body=urllib.request.urlopen("https://storage.googleapis.com/image-colorizer-model/export.pkl").read()
 #load model
@@ -36,11 +34,13 @@ def colorize():
 		img = PIL.Image.open(file.stream).convert('RGB')
 		img_io = BytesIO()
 		img.save(img_io, extension.upper(), quality=100)
-		img_io.seek(0)
 		#create fastai image and make prediciton
 		img_fastai = PILImage.create(img_io)
 		prediction,_,probability= model.predict(img_fastai)
+		#invert image and get bytes
 		img=PIL.ImageOps.invert(img)
+		img_io = BytesIO()
+		img.save(img_io, extension.upper(), quality=100)
 		#encode image as base64 to send back
 		encoded_img = base64.encodebytes(img_io.getvalue()).decode('ascii')
 		#send response
