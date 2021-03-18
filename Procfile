@@ -1,1 +1,1 @@
-web: gunicorn image-colorizer:app
+web: gunicorn app:app
