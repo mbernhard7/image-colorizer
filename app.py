@@ -18,10 +18,10 @@ def index():
 
 @app.route('/colorize', methods=['POST'])
 def colorize():
-    """Receive an image, colorize it, and  return it in base64 encoding
+    """Receive an image, colorizes it, and  return it in base64 encoding
 
     Returns:
-        JSON Response: a prediction using the Pets nueral network and the image with its colors inverted
+        JSON Response: contains a base64 encoding of the colorized image
     """
     try:
         file = request.files['imageFile']
