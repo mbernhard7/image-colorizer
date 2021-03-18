@@ -41,7 +41,8 @@ def colorize_file(file, extension):
     print(type(file))
     t0 = time.time()
     with tempfile.NamedTemporaryFile(suffix='.'+extension) as f:
-        f.write(file.read())
+        file.save(f)
+        file.close()
         img = cv.imread(f.name)
     input_width = 224
     input_height = 224
