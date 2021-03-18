@@ -9,21 +9,21 @@
 </head>
 
 <body>
-	<a class="download-link" href="" download="" target="blank_"></a>
-	<div class="header">
-	    <h1 class="title">Image Colorizer (...Pet Breed Predicter)</h1>
-	    <div class="tabbar">
-	        <button class="tablink current" onclick="openPage('Colorizer', this)">Predicter</button>
-	        <button class="tablink" onclick="openPage('About', this)">About</button>
-	    </div>
-	</div>
+    <a class="download-link" href="" download="" target="blank_"></a>
+    <div class="header">
+        <h1 class="title">Image Colorizer (...Pet Breed Predicter)</h1>
+        <div class="tabbar">
+            <button class="tablink current" onclick="openPage('Colorizer', this)">Predicter</button>
+            <button class="tablink" onclick="openPage('About', this)">About</button>
+        </div>
+    </div>
     <div id="Colorizer" class="tabcontent current">
-    	<div style="text-align: center;">
-        	<button class="file-upload-btn btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload</button>
+        <div style="text-align: center;">
+            <button class="file-upload-btn btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload</button>
         </div>
         <div style="text-align: center;">
-        	<span class="error-message"></span>
-    	</div>
+            <span class="error-message"></span>
+        </div>
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
         </div>
@@ -44,8 +44,10 @@
             </div>
         </div>
     </div>
-    <div id="About" class="tabcontent">
-        <p class="aboutText">This website will evenutally colorize black and white images using a neural network backend. Currently, it predicts pet breeds. Created for CSCI121 at Harvey Mudd. Currently in development. Created by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
+    <div id="About" class="tabcontent" style="text-align:center">
+        <p class="aboutText">This website will evenutally colorize black and white images using a neural network backend. Currently in development. As of now, it predicts pet breeds adn inverts the image. Created for CSCI121 at Harvey Mudd. Created by Miles Bernhard, Elakshi Shah, Kripesh Ranabhat, and Maria Croom.</p>
+        <a href="https://github.com/mbernhard7/image-colorizer">Github</a>
     </div>
 </body>
+
 </html>
