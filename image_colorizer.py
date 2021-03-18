@@ -5,8 +5,11 @@ from io import BytesIO
 import os.path
 import base64
 import tempfile
+import time
 
 # fetch and load model from Google Cloud Storage
+print("start model import")
+t0 = time.time()
 with tempfile.NamedTemporaryFile(suffix='.caffemodel', dir='model/') as f:
     model_url = "https://storage.googleapis.com/image-colorizer-model/color" \
         "ization_release_v2.caffemodel"
@@ -19,6 +22,9 @@ Caffe_net.getLayer(Caffe_net.getLayerId('class8_ab')).blobs = [
     numpy_file.astype(np.float32)]
 Caffe_net.getLayer(Caffe_net.getLayerId('conv8_313_rh')).blobs = [
     np.full([1, 313], 2.606, np.float32)]
+t1 = time.time()
+total = t1-t0
+print("End model import: "+str(total))
 
 
 def colorize_file(file, extension):
@@ -31,7 +37,8 @@ def colorize_file(file, extension):
     Returns:
         Dictionairy: image data
     """
-
+    print("start colorize")
+    t0 = time.time()
     with tempfile.NamedTemporaryFile(suffix='.'+extension) as f:
         f.write(file.read())
         img = cv.imread(f.name)
@@ -56,4 +63,7 @@ def colorize_file(file, extension):
     data = {
         'image': "data:image/"+extension.lower()+";base64,"+encoded_img
     }
+    t1 = time.time()
+    total = t1-t0
+    print("End colorize: "+str(total))
     return data

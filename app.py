@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, jsonify, make_response
 from image_colorizer import colorize_file
 
-
 app = Flask(__name__)
 
 
