@@ -55,9 +55,11 @@ def colorize_file(file, extension):
     input_height = 224
     rgb_img = (img[:, :, [2, 1, 0]] * 1.0 / 255).astype(np.float32)
     lab_img = cv.cvtColor(rgb_img, cv.COLOR_RGB2Lab)
+    print(1)
     l_channel = lab_img[:, :, 0]
     l_channel_resize = cv.resize(l_channel, (input_width, input_height))
     l_channel_resize -= 50
+    print(1)
     Caffe_net.setInput(cv.dnn.blobFromImage(l_channel_resize))
     print(1)
     ab_channel = Caffe_net.forward()[0, :, :, :].transpose((1, 2, 0))
