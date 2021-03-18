@@ -38,6 +38,7 @@ def colorize_file(file, extension):
         Dictionairy: image data
     """
     print("start colorize")
+    print(type(file))
     t0 = time.time()
     with tempfile.NamedTemporaryFile(suffix='.'+extension) as f:
         f.write(file.read())
