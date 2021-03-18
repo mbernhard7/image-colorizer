@@ -5,13 +5,9 @@ from io import BytesIO
 import os.path
 import base64
 import tempfile
-import time
-from operator import itemgetter
-from pympler import tracker, asizeof
+
 # fetch and load model from Google Cloud Storage
-mem = tracker.SummaryTracker()
-print("start model import")
-t0 = time.time()
+
 with tempfile.NamedTemporaryFile(suffix='.caffemodel', dir='model/') as f:
     model_url = "https://storage.googleapis.com/image-colorizer-model/color" \
         "ization_release_v2.caffemodel"
@@ -24,13 +20,6 @@ Caffe_net.getLayer(Caffe_net.getLayerId('class8_ab')).blobs = [
     numpy_file.astype(np.float32)]
 Caffe_net.getLayer(Caffe_net.getLayerId('conv8_313_rh')).blobs = [
     np.full([1, 313], 2.606, np.float32)]
-t1 = time.time()
-total = t1-t0
-print("End model import: "+str(total))
-print(asizeof.asizeof(Caffe_net))
-for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
-    print(x)
-
 
 def colorize_file(file, extension):
     """Colorizes the image using OpenCV model
@@ -42,24 +31,17 @@ def colorize_file(file, extension):
     Returns:
         Dictionairy: image data
     """
-    print("start colorize")
-    print(type(file))
-    t0 = time.time()
     with tempfile.NamedTemporaryFile(suffix='.'+extension) as f:
         file.save(f)
         file.close()
         img = cv.imread(f.name)
-    for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
-        print(x)
     input_width = 224
     input_height = 224
     rgb_img = (img[:, :, [2, 1, 0]] * 1.0 / 255).astype(np.float32)
     lab_img = cv.cvtColor(rgb_img, cv.COLOR_RGB2Lab)
-    print(1)
     l_channel = lab_img[:, :, 0]
     l_channel_resize = cv.resize(l_channel, (input_width, input_height))
     l_channel_resize -= 50
-    print(1)
     Caffe_net.setInput(cv.dnn.blobFromImage(l_channel_resize))
     for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
         print(x)
@@ -78,9 +60,4 @@ def colorize_file(file, extension):
     data = {
         'image': "data:image/"+extension.lower()+";base64,"+encoded_img
     }
-    t1 = time.time()
-    total = t1-t0
-    print("End colorize: "+str(total))
-    for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
-        print(x)
     return data
