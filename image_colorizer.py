@@ -6,8 +6,10 @@ import os.path
 import base64
 import tempfile
 import time
-
+from operator import itemgetter
+from pympler import tracker, asizeof
 # fetch and load model from Google Cloud Storage
+mem = tracker.SummaryTracker()
 print("start model import")
 t0 = time.time()
 with tempfile.NamedTemporaryFile(suffix='.caffemodel', dir='model/') as f:
@@ -25,6 +27,9 @@ Caffe_net.getLayer(Caffe_net.getLayerId('conv8_313_rh')).blobs = [
 t1 = time.time()
 total = t1-t0
 print("End model import: "+str(total))
+print(asizeof.asizeof(Caffe_net))
+for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
+    print(x)
 
 
 def colorize_file(file, extension):
@@ -44,6 +49,8 @@ def colorize_file(file, extension):
         file.save(f)
         file.close()
         img = cv.imread(f.name)
+    for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
+        print(x)
     input_width = 224
     input_height = 224
     rgb_img = (img[:, :, [2, 1, 0]] * 1.0 / 255).astype(np.float32)
@@ -52,7 +59,9 @@ def colorize_file(file, extension):
     l_channel_resize = cv.resize(l_channel, (input_width, input_height))
     l_channel_resize -= 50
     Caffe_net.setInput(cv.dnn.blobFromImage(l_channel_resize))
+    print(1)
     ab_channel = Caffe_net.forward()[0, :, :, :].transpose((1, 2, 0))
+    print(2)
     (original_height, original_width) = rgb_img.shape[:2]
     ab_channel_us = cv.resize(ab_channel, (original_width, original_height))
     lab_output = np.concatenate(
@@ -68,4 +77,6 @@ def colorize_file(file, extension):
     t1 = time.time()
     total = t1-t0
     print("End colorize: "+str(total))
+    for x in sorted(mem.create_summary(), reverse=True, key=itemgetter(2))[:10]:
+        print(x)
     return data
