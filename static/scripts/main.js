@@ -61,13 +61,14 @@ function colorizeImage() {
                                     });
                             });
                         } else {
+                            console.error(res);
                             console.error(status + ' ' + res.text())
                             $('.error-message').html('Error: ' + status)
                             removeUpload();
                         }
                     })
                     .catch(error => {
-                        console.error(error)
+                        console.error(error);
                         $('.error-message').html(error)
                         removeUpload();
                     })
