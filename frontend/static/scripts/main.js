@@ -66,6 +66,7 @@ function colorizeImage() {
                             });
                         } else {
                             res.text().then(text => {
+                                console.log(text)
                                 var parser = new DOMParser();
                                 var htmlDoc = parser.parseFromString(text, 'text/html');
                                 $('.error-message').html(htmlDoc.getElementsByTagName('title')[0].textContent);

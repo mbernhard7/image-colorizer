@@ -6,6 +6,7 @@ import traceback
 
 app = Flask(__name__)
 cors = CORS(app, origins=['http://127.0.0.1:8000', 'https://cs121-image-colorizer.herokuapp.com'])
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/colorize', methods=['POST'])
 def colorize():
@@ -24,7 +25,6 @@ def colorize():
     except Exception as e:
         print(traceback.format_exc(), file=sys.stderr)
         res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
-        res.headers['Access-Control-Allow-Origin']: '*'
         return res
 
 if __name__ == '__main__':
