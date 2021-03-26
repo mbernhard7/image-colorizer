@@ -1,6 +1,10 @@
 var imageName;
 var newImageName;
 var fileExtension;
+var apiURL = "https://imagecolorizer.wl.r.appspot.com";
+if (window.location.href=='http://127.0.0.1:8000/'){
+    apiURL = "http://127.0.0.1:8000"
+}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -46,7 +50,7 @@ function colorizeImage() {
                     method: 'POST',
                     body: formData,
                 };
-                fetch('/api/colorize', options)
+                fetch(apiURL+'/api/colorize', options)
                     .then(res => {
                         if (res.ok) {
                             res.json().then(data => {
@@ -71,7 +75,6 @@ function colorizeImage() {
                         }
                     })
                     .catch(error => {
-                        console.log('test')
                         console.error(error);
                         $('.error-message').html(error)
                         removeUpload();
