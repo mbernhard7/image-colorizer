@@ -1,4 +1,5 @@
 .python-version
+vendor/
 deploy*
 *.caffemodel
 # Editors
