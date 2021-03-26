@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify, make_response
 from image_colorizer import colorize_file
-
+import sys
+import traceback
 
 app = Flask(__name__)
 
@@ -18,10 +19,10 @@ def index():
 
 @app.route('/colorize', methods=['POST'])
 def colorize():
-    """Receive an image, colorize it, and  return it in base64 encoding
+    """Receive an image, colorizes it, and  return it in base64 encoding
 
     Returns:
-        JSON Response: a prediction using the Pets nueral network and the image with its colors inverted
+        JSON Response: contains a base64 encoding of the colorized image
     """
     try:
         file = request.files['imageFile']
@@ -30,5 +31,5 @@ def colorize():
         return make_response(jsonify(data), 200)
 
     except Exception as e:
-        print(e)
-        return f"An Error Occured: {e}", 400
+        print(traceback.format_exc(), file=sys.stderr)
+        return f"An Error Occured: {traceback.format_exc()}", 400

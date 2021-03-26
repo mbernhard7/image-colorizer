@@ -54,20 +54,21 @@ function colorizeImage() {
                                     .then(blob => {
                                         const imgURL = URL.createObjectURL(blob);
                                         $('.file-return-image').attr('src', imgURL);
-                                        $('.result-class').html(data['prediction'] + ' , ' + data['probability'] + '% sure');
+                                        $('.result-class').html('');
                                         $('.download-link').attr('href', imgURL);
                                         $('.download').css("display", "block");
                                         $('.remove-image').removeAttr("disabled");
                                     });
                             });
                         } else {
+                            console.error(res);
                             console.error(status + ' ' + res.text())
                             $('.error-message').html('Error: ' + status)
                             removeUpload();
                         }
                     })
                     .catch(error => {
-                        console.error(error)
+                        console.error(error);
                         $('.error-message').html(error)
                         removeUpload();
                     })
