@@ -46,9 +46,9 @@ function colorizeImage() {
                     method: 'POST',
                     body: formData,
                 };
-                fetch('/colorize', options)
+                fetch('/api/colorize', options)
                     .then(res => {
-                        if (res.status == 200) {
+                        if (res.ok) {
                             res.json().then(data => {
                                 fetch(data['image']).then(response => response.blob())
                                     .then(blob => {
@@ -61,13 +61,17 @@ function colorizeImage() {
                                     });
                             });
                         } else {
-                            console.error(res);
-                            console.error(status + ' ' + res.text())
-                            $('.error-message').html('Error: ' + status)
+                            res.text().then(text => {
+                                var parser = new DOMParser();
+                                var htmlDoc = parser.parseFromString(text, 'text/html');
+                                $('.error-message').html(htmlDoc.getElementsByTagName('title')[0].textContent);
+                            });
+                            
                             removeUpload();
                         }
                     })
                     .catch(error => {
+                        console.log('test')
                         console.error(error);
                         $('.error-message').html(error)
                         removeUpload();

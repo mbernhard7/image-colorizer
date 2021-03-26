@@ -16,7 +16,6 @@ with tempfile.NamedTemporaryFile(suffix='.caffemodel', dir='model/') as f:
     Caffe_net = cv.dnn.readNetFromCaffe(
         "./model/colorization_deploy_v2.prototxt", f.name)
 numpy_file = numpy_file.transpose().reshape(2, 313, 1, 1)
-print(Caffe_net.getLayer(Caffe_net.getLayerId('class8_ab')).blobs)
 Caffe_net.getLayer(Caffe_net.getLayerId('class8_ab')).blobs = [
     numpy_file.astype(np.float32)]
 Caffe_net.getLayer(Caffe_net.getLayerId('conv8_313_rh')).blobs = [

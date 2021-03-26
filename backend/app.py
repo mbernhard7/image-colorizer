@@ -6,18 +6,7 @@ import traceback
 app = Flask(__name__)
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    """Returns the main page
-
-    Returns:
-        HTML Page: renders the main html page
-    """
-    return render_template('main.html')
-
-
-@app.route('/colorize', methods=['POST'])
+@app.route('/api/colorize', methods=['POST'])
 def colorize():
     """Receive an image, colorizes it, and  return it in base64 encoding
 
@@ -33,3 +22,6 @@ def colorize():
     except Exception as e:
         print(traceback.format_exc(), file=sys.stderr)
         return f"An Error Occured: {traceback.format_exc()}", 400
+
+if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=8001)
