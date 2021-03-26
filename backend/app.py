@@ -17,11 +17,15 @@ def colorize():
         file = request.files['imageFile']
         extension = file.filename.split('.')[-1]
         data = colorize_file(file, extension)
-        return make_response(jsonify(data), 200)
+        res = make_response(jsonify(data), 200)
+        res.headers['Access-Control-Allow-Origin']: 'https://cs121-image-colorizer.herokuapp.com'
+        return res
 
     except Exception as e:
         print(traceback.format_exc(), file=sys.stderr)
-        return f"An Error Occured: {traceback.format_exc()}", 400
+        res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
+        res.headers['Access-Control-Allow-Origin']: 'https://cs121-image-colorizer.herokuapp.com'
+        return res
 
 if __name__ == '__main__':
       app.run(host='0.0.0.0', port=8001)
