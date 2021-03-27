@@ -5,8 +5,7 @@ import sys
 import traceback
 
 app = Flask(__name__)
-cors = CORS(app, origins=['http://127.0.0.1:8000', 'https://cs121-image-colorizer.herokuapp.com'])
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000", "https://cs121-image-colorizer.herokuapp.com"], supports_credentials=True)
 
 @app.route('/colorize', methods=['POST'])
 def colorize():

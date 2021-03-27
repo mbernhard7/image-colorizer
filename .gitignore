@@ -5,7 +5,6 @@ deploy*
 # Editors
 .vscode/
 .idea/
-
 # Vagrant
 .vagrant/
 

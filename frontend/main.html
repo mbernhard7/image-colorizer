@@ -27,8 +27,10 @@
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
         </div>
+        <canvas id="hidden-canvas" class="hidden-canvas" style="display: none;"></canvas>
+        <img class='hidden-image' id="hidden-image" style="display: none;"></img>
         <div class="file-upload-content">
-            <img class="file-upload-image" src="#" alt="Uploaded Image" />
+            <img class="file-upload-image" id='return-image' src="#" alt="Uploaded Image" />
             <div>
                 <button type="button" onclick="removeUpload()" class="remove-image btn">Remove</button>
                 <button type="button" onclick="colorizeImage()" class="colorize-image btn">Colorize</button>
