@@ -18,27 +18,23 @@
         </div>
     </div>
     <div id="Colorizer" class="tabcontent current">
-        <div style="text-align: center;">
-            <button class="file-upload-btn btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Upload</button>
-        </div>
-        <div style="text-align: center;">
-            <span class="error-message"></span>
-        </div>
-        <div class="image-upload-wrap">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
-        </div>
-        <canvas id="hidden-canvas" class="hidden-canvas" style="display: none;"></canvas>
-        <img class='hidden-image' id="hidden-image" style="display: none;"></img>
+        <p class="aboutText">The image and video colorizer allows you to use neural network technology to see your old black and white images or videos in color! Click upload below and select a jpg, png, or mp4 file of less that 5 mb.</p>
         <div class="file-upload-content">
-            <img class="file-upload-image" id='return-image' src="#" alt="Uploaded Image" />
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
+            </div>
+            <img class="file-upload-image" id='file-upload-image' src="/static/images/noimage.png" alt="Uploaded Image" />
+            <div style="text-align: center;">
+                <span class="error-message"></span>
+            </div>
             <div>
-                <button type="button" onclick="removeUpload()" class="remove-image btn">Remove</button>
-                <button type="button" onclick="colorizeImage()" class="colorize-image btn">Colorize</button>
+                <button class="file-upload-btn btn" type="button" onclick="uploadClick()">Upload</button>
+                <button type="button" onclick="colorizeImage()" class="colorize-image btn" disabled>Colorize</button>
             </div>
         </div>
         <div class="file-return-content">
             <div>
-                <img class="file-return-image" src="/static/images/loading.gif" alt="Loading..." />
+                <img class="file-return-image" id='file-return-image' src="/static/images/loading.gif" alt="Loading..." />
             </div>
             <span class="result-class"><br></span>
             <div style="text-align: center;">

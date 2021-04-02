@@ -88,9 +88,8 @@ a {
 }
 
 .file-upload-btn {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
+    width: 45%;
+    margin: 0;
     color: #fff;
     background: #1FB264;
     border: none;
@@ -116,7 +115,6 @@ a {
 }
 
 .file-upload-content {
-    display: none;
     text-align: center;
 }
 
@@ -134,56 +132,21 @@ a {
 }
 
 .file-upload-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 224px;
+    max-width: 224px;
     margin: auto;
     padding: 20px;
     transition: all .2s ease;
 }
 
 .file-return-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 224px;
+    max-width: 224px;
     margin: auto;
     padding: 20px;
     display: none;
     transition: all .2s ease;
 }
-
-.remove-image {
-    width: 45%;
-    margin: 0;
-    color: #fff;
-    background: #cd4535;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #b02818;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.remove-image:hover {
-    background: #c13b2a;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
-}
-
-.remove-image:active {
-    border: 0;
-    transition: all .2s ease;
-}
-
-.remove-image:disabled,
-.remove-image[disabled] {
-    background: #777;
-    border-bottom: 4px solid #555;
-    cursor: default;
-}
-
 .colorize-image {
     width: 45%;
     margin: 0;
