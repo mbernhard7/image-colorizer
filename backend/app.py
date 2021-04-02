@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify, make_response
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from image_colorizer import colorize_file
 import sys
@@ -21,7 +21,7 @@ def colorize():
         res = make_response(jsonify(data), 200)
         return res
 
-    except Exception as e:
+    except Exception:
         print(traceback.format_exc(), file=sys.stderr)
         res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
         return res

@@ -1,8 +1,6 @@
-import urllib.request
 import numpy as np
 import cv2 as cv
 from io import BytesIO
-import os.path
 import base64
 import tempfile
 
