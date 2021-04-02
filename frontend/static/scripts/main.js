@@ -1,8 +1,6 @@
 var imageName;
 var newImageName;
 var fileExtension;
-var original_width;
-var original_height;
 apiURL = "https://milesbernhard.pythonanywhere.com";
 if (window.location.href=='http://127.0.0.1:8000/'){
     apiURL = "http://127.0.0.1:5000"
