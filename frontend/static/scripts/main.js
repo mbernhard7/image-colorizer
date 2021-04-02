@@ -1,6 +1,17 @@
 var imageName;
 var newImageName;
 var fileExtension;
+var original_width;
+var original_height;
+apiURL = "https://milesbernhard.pythonanywhere.com";
+if (window.location.href=='http://127.0.0.1:8000/'){
+    apiURL = "http://127.0.0.1:5000"
+}
+
+function uploadClick() {
+    removeUpload();
+    $('.file-upload-input').trigger( 'click' )
+}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -17,10 +28,9 @@ function readURL(input) {
         } else {
             reader.onload = function(e) {
                 $('.image-upload-wrap').css("display", "none");
-                $('.error-message').html('')
+                $('.error-message').html('');
                 $('.file-upload-image').attr('src', e.target.result);
-                $('.file-upload-content').css("display", "block");
-                $('.file-upload-btn').css("display", "none");
+                $('.colorize-image').removeAttr("disabled");
                 $('.download-link').attr('download', newImageName);
             };
             reader.readAsDataURL(input.files[0]);
@@ -32,8 +42,9 @@ function readURL(input) {
 }
 
 function colorizeImage() {
+    const hiddenCanvas = document.getElementById('hidden-canvas');
     $('.colorize-image').attr('disabled', 'disabled');
-    $('.remove-image').attr('disabled', 'disabled');
+    $('.file-upload-btn').attr('disabled', 'disabled');
     $('.file-return-image').show()
     fetch($('.file-upload-image').attr('src'))
         .then(res => res.blob())
@@ -44,26 +55,33 @@ function colorizeImage() {
                 formData.append('imageFile', file)
                 const options = {
                     method: 'POST',
+                    mode: 'cors',
                     body: formData,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    }
                 };
-                fetch('/colorize', options)
+                fetch(apiURL+'/colorize', options)
                     .then(res => {
-                        if (res.status == 200) {
+                        if (res.ok) {
                             res.json().then(data => {
                                 fetch(data['image']).then(response => response.blob())
                                     .then(blob => {
                                         const imgURL = URL.createObjectURL(blob);
-                                        $('.file-return-image').attr('src', imgURL);
-                                        $('.result-class').html('');
+                                        $('.file-return-image').attr('src', imgURL)
                                         $('.download-link').attr('href', imgURL);
+                                        $('.result-class').html('');
                                         $('.download').css("display", "block");
-                                        $('.remove-image').removeAttr("disabled");
+                                        $('.file-upload-btn').removeAttr("disabled");
                                     });
                             });
                         } else {
-                            console.error(res);
-                            console.error(status + ' ' + res.text())
-                            $('.error-message').html('Error: ' + status)
+                            res.text().then(text => {
+                                console.log(text)
+                                var parser = new DOMParser();
+                                var htmlDoc = parser.parseFromString(text, 'text/html');
+                                $('.error-message').html(htmlDoc.getElementsByTagName('title')[0].textContent);
+                            });
                             removeUpload();
                         }
                     })
@@ -75,20 +93,18 @@ function colorizeImage() {
             } else {
                 removeUpload();
             }
-        })
+        });
 }
 
 function removeUpload() {
     $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-    $('.file-upload-content').css("display", "none");
     $('.file-return-image').css("display", "none");
     $('.result-class').html("");
     $('.file-return-image').attr('src', '/static/images/loading.gif');
+    $('.file-upload-image').attr('src', '/static/images/noimage.png');
     $('.download').css("display", "none");
     $('.image-upload-wrap').css("display", "block");
-    $('.file-upload-btn').css("display", "block");
-    $('.colorize-image').removeAttr("disabled");
-    $('.remove-image').removeAttr("disabled");
+    $('.colorize-image').attr('disabled', 'disabled');
     imageName = "";
     newImageName = "";
     fileExtension = "";

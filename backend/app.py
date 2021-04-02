@@ -1,21 +1,11 @@
-from flask import Flask, request, render_template, jsonify, make_response
+from flask import Flask, request, jsonify, make_response
+from flask_cors import CORS
 from image_colorizer import colorize_file
 import sys
 import traceback
 
 app = Flask(__name__)
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    """Returns the main page
-
-    Returns:
-        HTML Page: renders the main html page
-    """
-    return render_template('main.html')
-
+CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000", "https://cs121-image-colorizer.herokuapp.com"], supports_credentials=True)
 
 @app.route('/colorize', methods=['POST'])
 def colorize():
@@ -28,8 +18,13 @@ def colorize():
         file = request.files['imageFile']
         extension = file.filename.split('.')[-1]
         data = colorize_file(file, extension)
-        return make_response(jsonify(data), 200)
+        res = make_response(jsonify(data), 200)
+        return res
 
-    except Exception as e:
+    except Exception:
         print(traceback.format_exc(), file=sys.stderr)
-        return f"An Error Occured: {traceback.format_exc()}", 400
+        res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
+        return res
+
+if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=8001)

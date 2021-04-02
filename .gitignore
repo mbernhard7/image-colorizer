@@ -1,10 +1,10 @@
 .python-version
-build.sh
+vendor/
+deploy*
 *.caffemodel
 # Editors
 .vscode/
 .idea/
-
 # Vagrant
 .vagrant/
 
