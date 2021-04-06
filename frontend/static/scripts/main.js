@@ -101,6 +101,7 @@ function removeUpload() {
     $('.file-upload-image').attr('src', '/static/images/noimage.png');
     $('.download').css("display", "none");
     $('.image-upload-wrap').css("display", "block");
+    $('.file-upload-btn').removeAttr('disabled');
     $('.colorize-image').attr('disabled', 'disabled');
     imageName = "";
     newImageName = "";
