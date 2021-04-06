@@ -6,12 +6,14 @@ import tempfile
 
 # load model
 numpy_file = np.load('./model/pts_in_hull.npy')
-Caffe_net = cv.dnn.readNetFromCaffe("./model/colorization_deploy_v2.prototxt", "./model/colorizer.caffemodel")
+Caffe_net = cv.dnn.readNetFromCaffe("./model/colorization_deploy_v2.prototxt",
+                                    "./model/colorizer.caffemodel")
 numpy_file = numpy_file.transpose().reshape(2, 313, 1, 1)
 Caffe_net.getLayer(Caffe_net.getLayerId('class8_ab')).blobs = [
     numpy_file.astype(np.float32)]
 Caffe_net.getLayer(Caffe_net.getLayerId('conv8_313_rh')).blobs = [
     np.full([1, 313], 2.606, np.float32)]
+
 
 def colorize_file(file, extension):
     """Colorizes the image using OpenCV model

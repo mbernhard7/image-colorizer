@@ -5,7 +5,11 @@ import sys
 import traceback
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:8000", "http://127.0.0.1:8000", "https://cs121-image-colorizer.herokuapp.com"], supports_credentials=True)
+CORS(app, origins=["http://localhost:8000",
+                   "http://127.0.0.1:8000",
+                   "https://cs121-image-colorizer.herokuapp.com"],
+     supports_credentials=True)
+
 
 @app.route('/colorize', methods=['POST'])
 def colorize():
@@ -26,5 +30,6 @@ def colorize():
         res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
         return res
 
+
 if __name__ == '__main__':
-      app.run(host='0.0.0.0', port=8001)
+    app.run(host='0.0.0.0', port=8001)
