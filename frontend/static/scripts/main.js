@@ -76,9 +76,8 @@ function colorizeImage() {
                         } else {
                             res.text().then(text => {
                                 console.log(text)
-                                var parser = new DOMParser();
-                                var htmlDoc = parser.parseFromString(text, 'text/html');
-                                $('.error-message').html(htmlDoc.getElementsByTagName('title')[0].textContent);
+                                $('.error-message').html(res.status+": An error occured. Please try again with a different image.");
+                                removeUpload();
                             });
                             removeUpload();
                         }
