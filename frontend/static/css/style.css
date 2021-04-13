@@ -1,3 +1,5 @@
+/** General Style **/
+
 body {
     font-family: sans-serif;
     background-color: #131313;
@@ -8,40 +10,52 @@ body {
 a {
     text-align: center;
     color: #1FB264;
-
 }
 
-.example-title {
-    color: #1FB264;
-    font-size: 200%;
-    text-align: center;
-    margin-bottom: 0px;
-}
-
-.example-box {
+img {
+    max-height: 224px;
+    max-width: 224px;
     margin: auto;
-    display: inline-flex;
+    padding: 20px;
+    transition: all .2s ease;
+}
+
+button {
+    min-width: 100px;
+    max-width: 200px;
+    width: 45%;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
     padding: 10px;
-    flex-direction: row;
-    background-color: #1d1d1d;
-    border: 2px solid #000000;
-    align-items: center;
-    justify-content: center;
-
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
-.example-section {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+button:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
 }
 
-.example-image {
-    width: 224px;
-    margin: 10px;
+button:active {
+    border: 0;
+    transition: all .2s ease;
 }
+
+button:disabled,
+button[disabled] {
+    background: #777;
+    border-bottom: 4px solid #555;
+    cursor: default;
+}
+/** Header Style **/
 
 .header {
     padding-top: 20px;
@@ -49,37 +63,17 @@ a {
     width: 100%;
     height: 100%;
     border-bottom: 2px solid #000000;
-}
-
-.btn {
-    min-width: 100px;
-    max-width: 200px;
-}
-
-.aboutText {
     text-align: center;
-    text-justify: inter-word;
-    color: #fff;
 }
 
 .title {
     margin-top: 10px;
     color: #1FB264;
     font-size: 300%;
-    text-align: center;
 }
-.question{
-    color: #1FB264;
-    font-size: 200%;
-}
-.answer{
-    color: #fff;
-    font-weight: bold;
-    font-size: 130%
-}
+
 .tabbar {
     width: 100%;
-    text-align: center;
 }
 
 .tablink {
@@ -121,46 +115,27 @@ a {
     display: block;
 }
 
-.error-message {
-    color: red;
-    width: 100%;
-    text-align: center;
-}
+/** About Tab Style **/
 
-.file-upload-btn {
-    width: 45%;
-    margin: 0;
+.aboutText {
+    text-align: center;
+    text-justify: inter-word;
     color: #fff;
-    background: #1FB264;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #15824B;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
 }
 
-.file-upload-btn:hover {
-    background: #1AA059;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
+/** FAQ Tab Style **/
+
+.question{
+    color: #1FB264;
+    font-size: 200%;
+}
+.answer{
+    color: #fff;
+    font-weight: bold;
+    font-size: 130%
 }
 
-.file-upload-btn:active {
-    border: 0;
-    transition: all .2s ease;
-}
-
-.file-upload-content {
-    text-align: center;
-}
-
-.file-return-content {
-    text-align: center;
-}
+/** Colorize Tab Style **/
 
 .file-upload-input {
     position: absolute;
@@ -171,82 +146,52 @@ a {
     cursor: pointer;
 }
 
-.file-upload-image {
-    max-height: 224px;
-    max-width: 224px;
-    margin: auto;
-    padding: 20px;
-    transition: all .2s ease;
+.error-message {
+    color: red;
+    width: 100%;
+    text-align: center;
 }
 
-.file-return-image {
-    max-height: 224px;
-    max-width: 224px;
-    margin: auto;
-    padding: 20px;
+.return-image {
     display: none;
-    transition: all .2s ease;
 }
 
-.colorize-image {
-    width: 45%;
-    margin: 0;
-    color: #fff;
-    background: #1FB264;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #15824B;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
+.download {
+    margin: auto;
+    display: none;
 }
 
-.colorize-image:hover {
-    background: #1AA059;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
-}
 
-.colorize-image:active {
-    border: 0;
-    transition: all .2s ease;
-}
-
-.colorize-image:disabled,
-.colorize-image[disabled] {
-    background: #777;
-    border-bottom: 4px solid #555;
-    cursor: default;
-}
-
-.result-class {
+.confidence {
     text-align: center;
     color: #fff;
     width: 100%;
 }
 
-.download {
-    display: none;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 20px;
-    color: #fff;
-    background: #1FB264;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #15824B;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
+.example-title {
+    color: #1FB264;
+    font-size: 200%;
+    margin-bottom: 5px;
 }
 
-.download:hover {
-    background: #1AA059;
-    transition: all .2s ease;
-    cursor: pointer;
+.example-box {
+    margin: auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex-direction: row;
+    background-color: #1d1d1d;
+    border: 2px solid #000000;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.example-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }

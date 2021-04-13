@@ -25,10 +25,9 @@ function readURL(input) {
             removeUpload();
         } else {
             reader.onload = function(e) {
-                $('.image-upload-wrap').css("display", "none");
                 $('.error-message').html('');
-                $('.file-upload-image').attr('src', e.target.result);
-                $('.colorize-image').removeAttr("disabled");
+                $('.upload-image').attr('src', e.target.result);
+                $('.colorize').removeAttr("disabled");
                 $('.download-link').attr('download', newImageName);
             };
             reader.readAsDataURL(input.files[0]);
@@ -40,11 +39,10 @@ function readURL(input) {
 }
 
 function colorizeImage() {
-    const hiddenCanvas = document.getElementById('hidden-canvas');
-    $('.colorize-image').attr('disabled', 'disabled');
-    $('.file-upload-btn').attr('disabled', 'disabled');
-    $('.file-return-image').show()
-    fetch($('.file-upload-image').attr('src'))
+    $('.colorize').attr('disabled', 'disabled');
+    $('.upload').attr('disabled', 'disabled');
+    $('.return-image').show()
+    fetch($('.upload-image').attr('src'))
         .then(res => res.blob())
         .then(blob => {
             const file = new File([blob], 'image.' + fileExtension.toLowerCase(), blob)
@@ -66,11 +64,11 @@ function colorizeImage() {
                                 fetch(data['image']).then(response => response.blob())
                                     .then(blob => {
                                         const imgURL = URL.createObjectURL(blob);
-                                        $('.file-return-image').attr('src', imgURL)
+                                        $('.return-image').attr('src', imgURL)
                                         $('.download-link').attr('href', imgURL);
-                                        $('.result-class').html('');
+                                        $('.confidence').html('');
                                         $('.download').css("display", "block");
-                                        $('.file-upload-btn').removeAttr("disabled");
+                                        $('.upload').removeAttr("disabled");
                                     });
                             });
                         } else {
@@ -96,13 +94,12 @@ function colorizeImage() {
 function removeUpload() {
     $('.file-upload-input').replaceWith($('.file-upload-input').clone());
     $('.file-return-image').css("display", "none");
-    $('.result-class').html("");
-    $('.file-return-image').attr('src', '/static/images/loading.gif');
-    $('.file-upload-image').attr('src', '/static/images/noimage.png');
+    $('.confidence').html("");
+    $('.return-image').attr('src', '/static/images/loading.gif');
+    $('.upload-image').attr('src', '/static/images/noimage.png');
     $('.download').css("display", "none");
-    $('.image-upload-wrap').css("display", "block");
-    $('.file-upload-btn').removeAttr('disabled');
-    $('.colorize-image').attr('disabled', 'disabled');
+    $('.upload').removeAttr('disabled');
+    $('.colorize').attr('disabled', 'disabled');
     imageName = "";
     newImageName = "";
     fileExtension = "";

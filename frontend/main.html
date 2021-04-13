@@ -21,32 +21,22 @@
     <div id="Colorizer" class="tabcontent current" style="text-align:center">
         <p class="answer">The image colorizer allows you to use neural network technology to see your old black and white images in color! Click upload below and select a JPG or PNG file of less than 5 mb.</p>
         <div class="file-upload-content">
-            <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
-            </div>
-            <img class="file-upload-image" id='file-upload-image' src="/static/images/noimage.png" alt="Uploaded Image" />
-            <div style="text-align: center;">
-                <span class="error-message"></span>
-            </div>
+            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/png, image/jpeg">
+            <img class="upload-image" src="/static/images/noimage.png" alt="Uploaded Image" />
+            <span class="error-message"></span>
             <div>
-                <button class="file-upload-btn btn" type="button" onclick="uploadClick()">Upload New</button>
-                <button type="button" onclick="colorizeImage()" class="colorize-image btn" disabled>Colorize</button>
+                <button class="upload" type="button" onclick="uploadClick()">Upload New</button>
+                <button class="colorize" type="button" onclick="colorizeImage()" disabled>Colorize</button>
             </div>
         </div>
-        <div class="file-return-content">
-            <div>
-                <img class="file-return-image" id='file-return-image' src="/static/images/loading.gif" alt="Loading..." />
-            </div>
-            <span class="result-class"><br></span>
-            <div style="text-align: center;">
-                <button class="download btn" type="button" onClick="downloadImage()">Download</button>
-            </div>
-        </div>
+        <img class="return-image" src="/static/images/loading.gif" alt="Loading..." />
+        <span class="confidence"> </span>
+        <button class="download" type="button" onClick="downloadImage()">Download</button>
         <div class='example-section'>
             <h1 class="example-title">Example</h1>
             <div class="example-box">
-                <img class="example-image" src="/static/images/bw_example.JPG" alt="bw image" />
-                <img class="example-image" src="/static/images/colorized_example.JPG" alt="color image" />
+                <img src="/static/images/bw_example.JPG" alt="bw image" />
+                <img src="/static/images/colorized_example.JPG" alt="color image" />
             </div>
         </div>
     </div>
