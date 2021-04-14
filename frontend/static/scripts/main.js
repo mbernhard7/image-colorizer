@@ -2,13 +2,13 @@ var imageName;
 var newImageName;
 var fileExtension;
 apiURL = "https://milesbernhard.pythonanywhere.com";
-if (window.location.href=='http://127.0.0.1:8000/'){
+if (window.location.href == 'http://127.0.0.1:8000/') {
     apiURL = "http://127.0.0.1:5000"
 }
 
 function uploadClick() {
     removeUpload();
-    $('.file-upload-input').trigger( 'click' )
+    $('.file-upload-input').trigger('click')
 }
 
 function readURL(input) {
@@ -41,7 +41,7 @@ function readURL(input) {
 function colorizeImage() {
     $('.colorize').attr('disabled', 'disabled');
     $('.upload').attr('disabled', 'disabled');
-    $('.return-image').show()
+    $('.return-image').css("display", "block");
     fetch($('.upload-image').attr('src'))
         .then(res => res.blob())
         .then(blob => {
@@ -57,7 +57,7 @@ function colorizeImage() {
                         'Access-Control-Allow-Origin': '*'
                     }
                 };
-                fetch(apiURL+'/colorize', options)
+                fetch(apiURL + '/colorize', options)
                     .then(res => {
                         if (res.ok) {
                             res.json().then(data => {
@@ -74,7 +74,7 @@ function colorizeImage() {
                         } else {
                             res.text().then(text => {
                                 console.log(text)
-                                $('.error-message').html(res.status+": An error occured. Please try again with a different image.");
+                                $('.error-message').html(res.status + ": An error occured. Please try again with a different image.");
                                 removeUpload();
                             });
                             removeUpload();
@@ -93,7 +93,7 @@ function colorizeImage() {
 
 function removeUpload() {
     $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-    $('.file-return-image').css("display", "none");
+    $('.return-image').css("display", "none");
     $('.confidence').html("");
     $('.return-image').attr('src', '/static/images/loading.gif');
     $('.upload-image').attr('src', '/static/images/noimage.png');

@@ -5,6 +5,7 @@ body {
     background-color: #131313;
     margin: 0 !important;
     padding: 0 !important;
+    overflow-x: hidden;
 }
 
 a {
@@ -13,15 +14,15 @@ a {
 }
 
 img {
-    max-height: 224px;
-    max-width: 224px;
-    margin: auto;
-    padding: 20px;
+    max-height: 300px;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px;
     transition: all .2s ease;
 }
 
 button {
-    min-width: 100px;
+    min-width: 50px;
     max-width: 200px;
     width: 45%;
     margin: 0;
@@ -55,6 +56,16 @@ button[disabled] {
     border-bottom: 4px solid #555;
     cursor: default;
 }
+
+.card {
+    margin: 0 auto;
+    width: 60%;
+    max-width: 600px;
+    min-width: 300px;
+    text-align: center;
+
+}
+
 /** Header Style **/
 
 .header {
@@ -77,18 +88,16 @@ button[disabled] {
 }
 
 .tablink {
-    min-width: 50px;
-    max-width: 400px;
     background: #2f2f2f;
-    color: white;
     float: center;
-    border-radius: 4px;
-    border: none;
+    border-radius: 10px 10px 0px 0px;
+    border: 1px solid #1d1d1d;
+    ;
     transition: all .2s ease;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
+    padding: 14px 3px;
+    font-size: 15px;
     width: 30%;
     margin-left: -2.5px;
     margin-right: -2.5px;
@@ -104,15 +113,16 @@ button[disabled] {
 }
 
 .tabcontent {
-    padding: 20px 20px;
-    height: 100%;
-    width: 60%;
-    display: none;
     margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    display: none;
 }
 
 .tabcontent.current {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /** About Tab Style **/
@@ -125,17 +135,43 @@ button[disabled] {
 
 /** FAQ Tab Style **/
 
-.question{
+.question {
     color: #1FB264;
     font-size: 200%;
 }
-.answer{
+
+.answer {
     color: #fff;
     font-weight: bold;
-    font-size: 130%
+    font-size: 130%;
+    margin: 10px;
 }
 
 /** Colorize Tab Style **/
+
+.columns {
+    padding: 10px;
+    margin: 0 auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.column {
+    vertical-align: top;
+    height: 100%;
+    max-width: 800px;
+    margin: 10px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 0;
+}
 
 .file-upload-input {
     position: absolute;
@@ -171,27 +207,14 @@ button[disabled] {
 .example-title {
     color: #1FB264;
     font-size: 200%;
-    margin-bottom: 5px;
+    margin: 0px;
 }
 
-.example-box {
-    margin: auto;
-    display: inline-flex;
-    flex-wrap: wrap;
-    padding: 10px;
-    flex-direction: row;
-    background-color: #1d1d1d;
-    border: 2px solid #000000;
-    align-items: center;
-    justify-content: center;
 
-}
 
 .example-section {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    background-color: #1d1d1d;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    padding: 10px;
 }
