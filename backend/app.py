@@ -5,6 +5,7 @@ import sys
 import traceback
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 CORS(app, origins=["http://localhost:8000",
                    "http://127.0.0.1:8000",
                    "https://cs121-image-colorizer.herokuapp.com"],
@@ -21,13 +22,19 @@ def colorize():
     try:
         file = request.files['imageFile']
         extension = file.filename.split('.')[-1]
+        if not (extension.lower().replace('jpg','jpeg') in ['jpeg', 'png']):
+            raise OSError("File type ."+extension+" not accepted")
         data = colorize_file(file, extension)
         res = make_response(jsonify(data), 200)
         return res
-
-    except Exception:
-        print(traceback.format_exc(), file=sys.stderr)
-        res = make_response(f"An Error Occured: {traceback.format_exc()}", 400)
+    except Exception as err:
+        print(str(type(err))+": "+str(err), file=sys.stderr)
+        if type(err)==OSError:
+            res = make_response(str(err), 415)
+        elif type(err)==TypeError:
+            res = make_response("File could not be processed.", 400)
+        else:
+            res = make_response(str(err), 400)
         return res
 
 

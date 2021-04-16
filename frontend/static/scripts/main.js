@@ -2,7 +2,7 @@ var imageName;
 var newImageName;
 var fileExtension;
 apiURL = "https://milesbernhard.pythonanywhere.com";
-if (window.location.href == 'http://127.0.0.1:8000/') {
+if (window.location.href == 'http://127.0.0.1:8000/' || window.location.href == 'http://localhost:8000/' ) {
     apiURL = "http://127.0.0.1:5000"
 }
 
@@ -20,7 +20,7 @@ function readURL(input) {
         fileExtension = imageName.split('.').slice(-1)[0]
         newImageName = imageName.replace('.' + fileExtension, '-colorized.' + fileExtension);
         fileExtension = fileExtension.replace('jpg', 'jpeg').replace('JPG', 'JPEG')
-        if (fileSize > 5000000) {
+        if (fileSize > 5 * 1024 * 1024) {
             $('.error-message').html('File larger than 5 MB maximum')
             removeUpload();
         } else {
@@ -33,9 +33,13 @@ function readURL(input) {
             reader.readAsDataURL(input.files[0]);
         }
     } else {
-        $('.error-message').html('No image file found')
-        removeUpload();
+        invalidImage();
     }
+}
+
+function invalidImage() {
+    $('.error-message').html('Image upload unsuccesful.')
+    removeUpload();
 }
 
 function colorizeImage() {
@@ -74,7 +78,7 @@ function colorizeImage() {
                         } else {
                             res.text().then(text => {
                                 console.log(text)
-                                $('.error-message').html(res.status + ": An error occured. Please try again with a different image.");
+                                $('.error-message').html(res.status + ": "+text);
                                 removeUpload();
                             });
                             removeUpload();

@@ -25,7 +25,7 @@
         </div>
         <div class='columns'>
             <div class=column>
-                <img class="upload-image" src="/static/images/noimage.png" alt="Uploaded Image" />
+                <img class="upload-image" onerror="invalidImage()" src="/static/images/noimage.png" alt="Uploaded Image" />
                 <span class="error-message"></span>
                 <div style='width:100%'>
                     <button class="upload" type="button" onclick="uploadClick()">Upload New</button>

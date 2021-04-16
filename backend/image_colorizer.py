@@ -2,6 +2,7 @@ import numpy as np
 import cv2 as cv
 from io import BytesIO
 import base64
+import sys
 import tempfile
 
 # load model

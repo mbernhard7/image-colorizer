@@ -183,6 +183,7 @@ button[disabled] {
 }
 
 .error-message {
+    margin: 10px auto;
     color: red;
     width: 100%;
     text-align: center;
