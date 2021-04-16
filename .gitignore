@@ -1,6 +1,7 @@
 .python-version
 vendor/
 deploy*
+update_backend*
 *.caffemodel
 # Editors
 .vscode/
