@@ -52,7 +52,7 @@ if app_changed:
     Path('/var/www/milesbernhard_pythonanywhere_com_wsgi.py').touch() #triggers web app reload
     print("\nReloaded app.")
     if this_changed:
-        print('\nUpdate script changed. Triggering re-run...')
+        print('\nUpdate script changed. Triggering re-run.')
         print(subprocess.run(['bash', 'reupdate_backend.sh', str(os.getpid())], stdout=subprocess.PIPE).stdout.decode('utf-8'))
 else:
     print('No changes detected.\nDone.')
