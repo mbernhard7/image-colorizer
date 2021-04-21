@@ -1,6 +1,8 @@
 .python-version
 vendor/
 deploy*
+reinstall_reqs.sh
+reupdate_backend.sh
 *.caffemodel
 # Editors
 .vscode/
