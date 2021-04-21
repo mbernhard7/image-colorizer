@@ -10,7 +10,7 @@ import filecmp
 import zipfile
 
 if os.path.exists('backend-new'):
-    shutil.rmtree('backend-new')
+    shutil.rmtree(os.path.abspath('backend-new'))
 os.mkdir('backend-new')
 wget.download('https://github.com/mbernhard7/image-colorizer/archive/refs/heads/main.zip', 'main.zip')
 with zipfile.ZipFile("main.zip","r") as archive:
@@ -30,8 +30,11 @@ for directory, subdirectories, files in os.walk('backend-new'):
                 os.remove(old_name)
                 os.rename(new_name,old_name)
                 print("Replaced "+old_name+" with new version.\n")
+            else:
+                print("No changes detected.\n")
 if os.path.exists('backend-new'):
-    shutil.rmtree('Deleted download.\n')
+    shutil.rmtree(os.path.abspath('backend-new'))
+    print('Deleted download.\n')
 print(subprocess.run(['bash', 'reinstall_reqs.sh'], stdout=subprocess.PIPE).stdout.decode('utf-8'))
 print("\nReloaded virtualenv.")
 Path('/var/www/milesbernhard_pythonanywhere_com_wsgi.py').touch() #triggers web app reload
