@@ -16,5 +16,5 @@ If you would like a demo of the colorizing neural network, download the director
 There are currently no known bugs. Uploading corrupted image files will return an error that will be displayed on the webpage. Any bugs should be reported to mbernhard22@cmc.edu. 
 
 <p align="center">
-  <img src="color.gif" alt="animated" />
+  <img src="color.gif" width="250" height="250" alt="animated" />
 </p>
