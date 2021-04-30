@@ -14,3 +14,5 @@ The front end application is deployed on heroku, and the backend is deployed on 
 If you would like a demo of the colorizing neural network, download the directory 'colorizer-nn-demo' from this repo and follow the instructions in the readme.
 
 There are currently no known bugs. Uploading corrupted image files will return an error that will be displayed on the webpage. Any bugs should be reported to mbernhard22@cmc.edu. 
+
+![](color.gif)
