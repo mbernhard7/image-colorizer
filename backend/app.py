@@ -12,7 +12,8 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 CORS(app, origins=["http://localhost:8000",
                    "http://127.0.0.1:8000",
-                   "https://cs121-image-colorizer.herokuapp.com"],
+                   "https://cs121-image-colorizer.herokuapp.com",
+                   "http://colorizer.milesbernhard.com"],
      supports_credentials=True)
 
 
