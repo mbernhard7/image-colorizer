@@ -8,7 +8,7 @@ to run the frontend locally. To run the backend locally, navigate to the backend
 Then, navigate to http://localhost:8000 in your browser to view the app running. 
 
 You can view the latest deployment live on the web here:
-[Image Colorizer](https://cs121-image-colorizer.herokuapp.com)
+[Image Colorizer](https://image-colorizer.milesbernhard.com/)
 The front end application is deployed on heroku, and the backend is deployed on pythonanywhere. You cannot make direct requests to the production backend, so to run the production app just visit the heroku link above.
 
 If you would like a demo of the colorizing neural network, download the directory 'colorizer-nn-demo' from this repo and follow the instructions in the readme.
